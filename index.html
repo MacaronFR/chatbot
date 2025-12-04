@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>chatbot</title>
+</head>
+<body style="background-color: #121212;">
+<div class="chatbot" id="chatbot-button">
+	<button class="button-icon">
+		<svg width="32" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+			<g clip-path="url(#messages__clip0_14307_15730)">
+				<path fill-opacity="0.01" d="M0 0h24v24H0z"></path>
+				<mask id="messages__b" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"
+					  style="mask-type: alpha;">
+					<g clip-path="url(#messages__clip1_14307_15730)">
+						<g clip-path="url(#messages__clip2_14307_15730)">
+							<mask id="messages__a" maskUnits="userSpaceOnUse" x="1" y="0" width="23" height="23"
+								  style="mask-type: alpha;">
+								<path d="M2.571 22.286h-.008.008z"></path>
+								<path fill-rule="evenodd" clip-rule="evenodd"
+									  d="M17.143 4.286c1.414 0 2.571 1.157 2.571 2.571v8.572c0 1.414-1.157 2.571-2.571 2.571H7.209l-4.037 4.037c-.162.162-.384.247-.606.248-.11 0-.219-.017-.32-.068-.317-.128-.532-.445-.532-.788V6.857c0-1.414 1.157-2.571 2.572-2.571h12.857zM4.286 6c-.472 0-.857.386-.857.857v12.506l2.82-2.82c.162-.163.377-.249.608-.249h10.286c.471 0 .857-.385.857-.857V6.866c0-.472-.386-.857-.857-.857H4.286V6z"></path>
+								<path d="M20.571.857c1.415 0 2.572 1.158 2.572 2.572V12c0 .472-.386.857-.857.857-.472 0-.857-.385-.857-.857V3.43c0-.472-.386-.857-.858-.857H7.714c-.471 0-.857-.386-.857-.857 0-.472.386-.858.857-.858h12.857z"></path>
+							</mask>
+							<g mask="url(#messages__a)">
+								<path d="M-1.714-1.714h27.429v27.429H-1.714z"></path>
+							</g>
+						</g>
+					</g>
+				</mask>
+				<g mask="url(#messages__b)">
+					<path d="M0 0h24v24H0V0z"></path>
+				</g>
+			</g>
+			<defs>
+				<clipPath id="messages__clip0_14307_15730">
+					<path d="M0 0h24v24H0z"></path>
+				</clipPath>
+				<clipPath id="messages__clip1_14307_15730">
+					<path d="M0 0h24v24H0z"></path>
+				</clipPath>
+				<clipPath id="messages__clip2_14307_15730">
+					<path transform="translate(-1.714 -1.714)" d="M0 0h27.429v27.429H0z"></path>
+				</clipPath>
+			</defs>
+		</svg>
+	</button>
+	<button class="button-icon not-visible">
+		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 19 18"
+			 class="conversations-visitor-close-icon">
+			<g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
+				<g fill="currentColor" transform="translate(-927 -991) translate(900.277 962)">
+					<g transform="translate(27 29)">
+						<path d="M10.627 9.013l6.872 6.873.708.707-1.415 1.414-.707-.707-6.872-6.872L2.34 17.3l-.707.707L.22 16.593l.707-.707L7.8 9.013.946 2.161l-.707-.708L1.653.04l.707.707L9.213 7.6 16.066.746l.707-.707 1.414 1.414-.707.708-6.853 6.852z"></path>
+					</g>
+				</g>
+			</g>
+		</svg>
+	</button>
+	<div id="chatbot_root" class="chatbot-container not-visible"></div>
+</div>
+<script type="module">
+    import {initChatbot} from "./src/utils.ts";
+
+    const onEnd = (data) => {
+        console.log(data);
+    }
+    initChatbot({
+        questions: {
+            "start": {
+                "question": "First question",
+                "answers": [
+                    {"text": "Answer 1", "next": "other_id"},
+                    {
+                        "text": "Answer 2",
+                        "next": "other_id",
+                        "action": {"action": "set", "property": "prop1", "value": "value1"}
+                    }
+                ]
+            },
+            "other_id": {
+                "question": ["Question", "In 2 messages"],
+                "goto": "end",
+                "action": {"action": "ask", "property": "prop2"}
+            },
+            "end": {
+                "question": "End of chatbot",
+                "action": {"action": "end"}
+            }
+        },
+        title: "Chatbot",
+        onEnd: onEnd
+    });
+</script>
+<script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

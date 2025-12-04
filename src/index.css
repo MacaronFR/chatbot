@@ -1,0 +1,51 @@
+@import "tailwindcss" important;
+
+@theme {
+	--color-primary: rgb(178, 69, 146);
+	--color-primary-dark: rgb(154, 12, 113);
+	--color-onprimary: rgb(255, 255, 255);
+	--color-question: rgb(245, 243, 242);
+	--color-question-text: black;
+	--color-background: rgb(255, 255, 255);
+	--color-option: rgb(51, 71, 91);
+	--color-option-hover: var(--color-primary);
+	--color-input: var(--color-gray-800);
+	--color-input-disabled: var(--color-stone-400);
+}
+
+.chatbot {
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+	border-radius: 100%;
+	height: 60px!important;
+	width: 60px!important;
+	background-color: var(--color-primary);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	color: var(--color-onprimary);
+}
+.chatbot-container {
+	opacity: 100%;
+	bottom: 0!important;
+	transition: all 0.3s ease-in-out;
+	cursor: default;
+}
+.button-icon {
+	position: absolute;
+	opacity: 100%;
+	rotate: 0;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+}
+.not-visible {
+	opacity: 0;
+}
+.button-icon.not-visible {
+	rotate: 45deg;
+}
+.chatbot-container.not-visible {
+	bottom: -100px;
+}

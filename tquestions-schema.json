@@ -1,0 +1,72 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://chatbot.imacaron.fr/tquestions.schema.json",
+	"title": "TQuestions",
+	"description": "A TQuestions object is the data you need to provide to the chatbot.",
+	"type": "object",
+	"patternProperties": {
+		"^.+$": {
+			"$ref": "#/definitions/TQuestion"
+		}
+	},
+	"definitions": {
+		"TQuestion": {
+			"type": "object",
+			"properties": {
+				"question": {
+					"type": ["string", "array"],
+					"items": {
+						"type": "string"
+					}
+				},
+				"action": {
+					"$ref": "#/definitions/TAction"
+				},
+				"answers": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TAnswer"
+					}
+				},
+				"goto": {
+					"type": "string"
+				}
+			},
+			"required": ["question"]
+		},
+		"TAction": {
+			"type": "object",
+			"properties": {
+				"action": {
+					"type": "string",
+					"enum": ["ask", "set", "end"]
+				},
+				"property": {
+					"type": "string"
+				},
+				"value": {
+					"type": ["string", "array", "boolean", "number", "null", "object"]
+				},
+				"goto": {
+					"type": "string"
+				}
+			},
+			"required": ["action"]
+		},
+		"TAnswer": {
+			"type": "object",
+			"properties": {
+				"text": {
+					"type": "string"
+				},
+				"next": {
+					"type": "string"
+				},
+				"action": {
+					"$ref": "#/definitions/TAction"
+				}
+			},
+			"required": ["text"]
+		}
+	}
+}
