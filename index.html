@@ -65,32 +65,13 @@
     const onEnd = (data) => {
         console.log(data);
     }
-    initChatbot({
-        questions: {
-            "start": {
-                "question": "First question",
-                "answers": [
-                    {"text": "Answer 1", "next": "other_id"},
-                    {
-                        "text": "Answer 2",
-                        "next": "other_id",
-                        "action": {"action": "set", "property": "prop1", "value": "value1"}
-                    }
-                ]
-            },
-            "other_id": {
-                "question": ["Question", "In 2 messages"],
-                "goto": "end",
-                "action": {"action": "ask", "property": "prop2"}
-            },
-            "end": {
-                "question": "End of chatbot",
-                "action": {"action": "end"}
-            }
-        },
-        title: "Chatbot",
-        onEnd: onEnd
-    });
+    document.addEventListener("chatbot-loaded", () => {
+        initChatbot({
+            questions: {"question":{"question":"Question","goto":"question1","answers":[]},"question1":{"question":"Question","action":{"action":"end"},"answers":[]},"start":{"question":"Question","answers":[{"text":"test","next":"question"},{"text":"test 2","next":"question1"},{"text":"test 3","next":"question2"}]},"question2":{"question":"Question","goto":"question1","answers":[]}},
+            title: "Chatbot",
+            onEnd: onEnd
+        });
+	});
 </script>
 <script type="module" src="/src/main.tsx"></script>
 </body>

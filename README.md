@@ -2,9 +2,18 @@
 
 ## Usage
 
-First, you will need to put the chatbot button in your HTML.  
+First, you will need to put the chatbot button and root in your HTML.
+The minimal structure is the following:
+```html
+<div class="chatbot" id="chatbot-button">
+    <button class="button-icon">Open</button>
+    <button class="button-icon not-visible">Close</button>
+    <div id="chatbot_root" class="chatbot-container not-visible"></div>
+</div>
+```
 The structure, class and id names are important and can't be changed. However, you can change the button content at your will.
 
+This is the default content of the buttons:
 ```html
 <div class="chatbot" id="chatbot-button">
     <button class="button-icon">
@@ -17,15 +26,20 @@ The structure, class and id names are important and can't be changed. However, y
   </div>
 ```
 
-After that you will need to add the script and css to load the chatbot
+After that you will need to add the script and CSS to load the chatbot
 ```html
 <script type="module" src="chatbot.js"></script>
 <link rel="stylesheet" href="chatbot.css">
 ```
 
-Finally, you will need to initialize the chatbot by calling the `initChatbot` function.  
+Finally, you will need to initialize the chatbot by listening to the `chatbot-loaded` event and then calling the `initChatbot` function.  
 This function takes one argument of type [`TConfig`](./src/types/TConfig.ts).  
 
+Example: 
+```typescript
+document.addEventListener("chatbot-loaded", () => initChatbot({ ... })
+);
+```
 ## Configuration
 
 To use the chatbot, you will need to provide at least a title and a list [`TQuestions`](./src/types/TQuestions.ts) object.  

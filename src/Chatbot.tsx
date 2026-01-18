@@ -6,9 +6,24 @@ import History from "./History.tsx";
 import Input from "./Input.tsx";
 import {currentTime} from "./utils.ts";
 import useChatbot from "./hooks/useChatbot.tsx";
+import type TConfig from "./types/TConfig.ts";
 
-export default function Chatbot() {
-	const config = useChatbot();
+document.getElementById("chatbot_root")!.onclick = (e) => {
+	e.stopPropagation()
+}
+document.getElementById("chatbot-button")!.addEventListener("click", () => {
+	document.getElementById("chatbot_root")!.classList.toggle("not-visible");
+	document.querySelectorAll(".button-icon").forEach(el => {
+		el.classList.toggle("not-visible");
+	})
+})
+
+interface ChatbotProps {
+	config?: TConfig;
+}
+
+export default function Chatbot(props: ChatbotProps) {
+	const config = useChatbot(props.config);
 	const [data, setData] = useState<Record<string, any>>({});
 	const [chatbot, setChatbot] = useState<TQuestions>(config.questions);
 	const [currentQuestion, setCurrentQuestion] = useState<TQuestion | null>(null);
