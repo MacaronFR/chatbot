@@ -1,8 +1,7 @@
-import type {TQuestions} from "./TQuestions.ts";
+import type {TBot} from "./TBot.ts";
 
 export default interface TConfig {
-	title: string;
-	questions: TQuestions;
+	bot: TBot;
 	onEnd?: (data: Record<string, any>) => void;
 	endMessage?: string;
 	endButtonText?: string;

@@ -66,10 +66,13 @@
         console.log(data);
     }
     document.addEventListener("chatbot-loaded", () => {
-        initChatbot({
-            questions: {"question":{"question":"Question","goto":"question1","answers":[]},"question1":{"question":"Question","action":{"action":"end"},"answers":[]},"start":{"question":"Question","answers":[{"text":"test","next":"question"},{"text":"test 2","next":"question1"},{"text":"test 3","next":"question2"}]},"question2":{"question":"Question","goto":"question1","answers":[]}},
-            title: "Chatbot",
-            onEnd: onEnd
+        initChatbot(
+            {
+				bot: {
+                    name: "Chatbot",
+					questions: {"question":{"question":"Question","goto":"question1","answers":[]},"question1":{"question":"Question","action":{"action":"end"},"answers":[]},"start":{"question":"Question","answers":[{"text":"test","next":"question"},{"text":"test 2","next":"question1"},{"text":"test 3","next":"question2"}]},"question2":{"question":"Question","goto":"question1","answers":[]}}
+                },
+				onEnd: onEnd
         });
 	});
 </script>

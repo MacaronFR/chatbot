@@ -1,0 +1,136 @@
+{
+	"$schema": "http://json-schema.org/draft/2020-12/schema",
+	"$id": "https://chatbot.imacaron.fr/tbot.schema.json",
+	"title": "TBot",
+	"description": "A TBot object is the data you need to provide to the chatbot.",
+	"type": "object",
+	"definitions": {
+		"TBot": {
+			"type": "object",
+			"properties": {
+				"questions": {
+					"$ref": "#/definitions/TQuestion"
+				},
+				"name": {
+					"type": "string"
+				},
+				"theme": {
+					"$ref": "#/definitions/Theme"
+				}
+			}
+		},
+		"TQuestion": {
+			"type": "object",
+			"properties": {
+				"question": {
+					"type": ["string", "array"],
+					"items": {
+						"type": "string"
+					}
+				},
+				"action": {
+					"$ref": "#/definitions/TAction"
+				},
+				"answers": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TAnswer"
+					}
+				},
+				"goto": {
+					"type": "string"
+				}
+			},
+			"required": ["question"]
+		},
+		"TAction": {
+			"type": "object",
+			"properties": {
+				"action": {
+					"type": "string",
+					"enum": ["ask", "set", "end"]
+				},
+				"property": {
+					"type": "string"
+				},
+				"value": {
+					"type": ["string", "array", "boolean", "number", "null", "object"]
+				},
+				"goto": {
+					"type": "string"
+				}
+			},
+			"required": ["action"]
+		},
+		"TAnswer": {
+			"type": "object",
+			"properties": {
+				"text": {
+					"type": "string"
+				},
+				"next": {
+					"type": "string"
+				},
+				"action": {
+					"$ref": "#/definitions/TAction"
+				}
+			},
+			"required": ["text"]
+		},
+		"Theme": {
+			"type": "object",
+			"properties": {
+				"primary": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				},
+				"primary-dark": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				},
+				"onprimary": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				},
+				"question": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				},
+				"question-text": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				},
+				"background": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				},
+				"option": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				},
+				"option-hover": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				},
+				"input": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				},
+				"input-disabled": {
+					"type": "string",
+					"format": "color",
+					"pattern": "^#([0-9a-fA-F]{3,8})|((rgb|hsl)a?\([0-9%,. ]+\))$"
+				}
+			}
+		}
+	}
+}

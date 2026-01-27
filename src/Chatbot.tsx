@@ -25,7 +25,7 @@ interface ChatbotProps {
 export default function Chatbot(props: ChatbotProps) {
 	const config = useChatbot(props.config);
 	const [data, setData] = useState<Record<string, any>>({});
-	const [chatbot, setChatbot] = useState<TQuestions>(config.questions);
+	const [chatbot, setChatbot] = useState<TQuestions>(config.bot.questions);
 	const [currentQuestion, setCurrentQuestion] = useState<TQuestion | null>(null);
 	const [currentQuestionId, setCurrentQuestionId] = useState<string | null>(null);
 	const [history, setHistory] = useState<TQuestions>({});
@@ -60,7 +60,7 @@ export default function Chatbot(props: ChatbotProps) {
 		}
 	}, [currentQuestion, currentQuestionId, chatbot]);
 	useEffect(() => {
-		setChatbot(config.questions);
+		setChatbot(config.bot.questions);
 	}, [config]);
 	useEffect(() => {
 		if(chatbot["start"] !== undefined) {
@@ -112,7 +112,7 @@ export default function Chatbot(props: ChatbotProps) {
 						{/*	<img src={back}/>*/}
 						{/*</button>*/}
 					</div>
-					<p className={"font-bold text-xl"}>{config.title}</p>
+					<p className={"font-bold text-xl"}>{config.bot.name}</p>
 				</nav>
 			</header>
 			<div className={"flex flex-col items-start gap-2 overflow-y-auto grow pb-8 px-4 pt-4 scroll-smooth"} ref={container}>
