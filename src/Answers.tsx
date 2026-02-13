@@ -1,3 +1,4 @@
+import React from "react";
 import type {TAnswer} from "./types/TQuestions.ts";
 
 interface AnswersProps {

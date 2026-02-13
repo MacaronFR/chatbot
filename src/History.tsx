@@ -1,6 +1,7 @@
 import type {TAnswer, TQuestions} from "./types/TQuestions.ts";
-import Question from "./Question.tsx";
-import Answer from "./Answer.tsx";
+import Question from "./Question";
+import Answer from "./Answer";
+import React from "react";
 
 interface HistoryProps {
 	history: TQuestions

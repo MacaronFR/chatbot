@@ -1,4 +1,5 @@
-import Send from "./Send.tsx";
+import React from "react";
+import Send from "./Send";
 import {useEffect, useState} from "react";
 
 interface InputProps {

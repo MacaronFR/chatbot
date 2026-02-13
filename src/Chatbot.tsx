@@ -1,12 +1,13 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import type {TAnswer, TQuestion, TQuestions} from "./types/TQuestions.ts";
-import Question from "./Question.tsx";
-import Answers from "./Answers.tsx";
-import History from "./History.tsx";
-import Input from "./Input.tsx";
-import {currentTime} from "./utils.ts";
-import useChatbot from "./hooks/useChatbot.tsx";
+import Question from "./Question";
+import Answers from "./Answers";
+import History from "./History";
+import Input from "./Input";
+import {currentTime} from "./utils";
+import useChatbot from "./hooks/useChatbot";
 import type TConfig from "./types/TConfig.ts";
+import React from "react";
 
 document.getElementById("chatbot_root")!.onclick = (e) => {
 	e.stopPropagation()

@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Send() {
 	return <svg width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" className="SendButton__SendIcon-biCvBD iJveov" style={{fill: "currentColor"}}>
 		<path
