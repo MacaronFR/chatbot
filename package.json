@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "vite",
     "build": "rm -rf dist && tsc && tailwindcss -i src/index.css -o index.css --minify",
+    "build-html": "tsc -b && vite build",
     "prepublish": "npm run build"
   },
   "author": "Macaron",
